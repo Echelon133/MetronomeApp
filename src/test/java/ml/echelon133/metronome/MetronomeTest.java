@@ -17,7 +17,7 @@ public class MetronomeTest {
     }
 
     @BeforeEach
-    public void beforeAll() {
+    public void beforeEach() {
         metronome = new Metronome();
     }
 

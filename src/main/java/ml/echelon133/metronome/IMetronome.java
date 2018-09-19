@@ -8,4 +8,5 @@ public interface IMetronome {
     long calculatePause();
     void setAccentInterval(Integer accentInterval);
     Integer getBPM();
+    void resetCounter();
 }

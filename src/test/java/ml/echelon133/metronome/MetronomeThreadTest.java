@@ -1,5 +1,6 @@
 package ml.echelon133.metronome;
 
+import ml.echelon133.metronome.listener.TestClickListener;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

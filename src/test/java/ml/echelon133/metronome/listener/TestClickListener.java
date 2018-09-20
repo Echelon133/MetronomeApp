@@ -1,7 +1,6 @@
-package ml.echelon133.metronome;
+package ml.echelon133.metronome.listener;
 
 import ml.echelon133.metronome.event.ClickEvent;
-import ml.echelon133.metronome.listener.IClickListener;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -22,10 +21,9 @@ public class TestClickListener implements IClickListener {
     }
 
     public Set<Integer> getAllAccentIntervals() {
-        Set<Integer> accentIntervals = clickEventList
-                                    .stream()
-                                    .map(ClickEvent::getAccentInterval)
-                                    .collect(Collectors.toSet());
-        return accentIntervals;
+        return clickEventList
+                .stream()
+                .map(ClickEvent::getAccentInterval)
+                .collect(Collectors.toSet());
     }
 }

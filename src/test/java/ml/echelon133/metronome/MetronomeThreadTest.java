@@ -26,7 +26,7 @@ public class MetronomeThreadTest {
             metronome.decrementBPMByFive();
         }
 
-        // Start the thread, then terminate it after fixed time, and check whether the events are as expected
+        // Start the thread, then terminate it after fixed time and check whether the events are as expected
         metronome.setDone(false);
         metronomeThread.start();
         try {
@@ -36,9 +36,9 @@ public class MetronomeThreadTest {
         }
         metronome.setDone(true);
 
-        // Check whether there was 10 clicks in 10 seconds (because bpm is 60)
+        // Check whether there were 10 clicks in 10 seconds (because bpm is 60)
         assertEquals(10, testClickListener.getNumberOfClicks().intValue());
-        // Check whether every event had the same accent interval (only one element in set, by default 4);
+        // Check whether every event had the same accent interval (only one element in the set, by default of value 4);
         assertEquals(1, testClickListener.getAllAccentIntervals().size());
         assertTrue(testClickListener.getAllAccentIntervals().contains(4));
     }
@@ -50,7 +50,7 @@ public class MetronomeThreadTest {
             metronome.incrementBPMByFive();
         }
 
-        // Start the thread, then terminate it after fixed time, and check whether the events are as expected
+        // Start the thread, then terminate it after fixed time and check whether the events are as expected
         metronome.setDone(false);
         metronomeThread.start();
         try {
@@ -60,11 +60,10 @@ public class MetronomeThreadTest {
         }
         metronome.setDone(true);
 
-        // Check whether there was 20 clicks in 10 seconds (because bpm is 120)
+        // Check whether there were 20 clicks in 10 seconds (because bpm is 120)
         assertEquals(20, testClickListener.getNumberOfClicks().intValue());
-        // Check whether every event had the same accent interval (only one element in set, by default 4);
+        // Check whether every event had the same accent interval (only one element in the set, by default of value 4);
         assertEquals(1, testClickListener.getAllAccentIntervals().size());
         assertTrue(testClickListener.getAllAccentIntervals().contains(4));
     }
-
 }

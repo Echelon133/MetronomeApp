@@ -1,5 +1,6 @@
 package ml.echelon133.metronome;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -8,6 +9,7 @@ public class TimeSignatureHolder {
     private static Map<String, Integer> timeSignatures;
 
     static {
+        timeSignatures = new HashMap<>();
         timeSignatures.put("2/4", 2);
         timeSignatures.put("3/4", 3);
         timeSignatures.put("4/4", 4);
@@ -20,8 +22,8 @@ public class TimeSignatureHolder {
         List<String> names = timeSignatures
                 .entrySet()
                 .stream()
-                .sorted()
                 .map(Map.Entry::getKey)
+                .sorted()
                 .collect(Collectors.toList());
         return names;
     }

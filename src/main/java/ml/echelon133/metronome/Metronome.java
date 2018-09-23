@@ -76,22 +76,30 @@ public class Metronome implements IMetronome, Runnable, IClickSource {
 
     @Override
     public void incrementBPMByOne() {
-        beatsPerMinute += 1;
+        if ((beatsPerMinute + 1) <= MAX_BPM_VALUE) {
+            beatsPerMinute += 1;
+        }
     }
 
     @Override
     public void decrementBPMByOne() {
-        beatsPerMinute -= 1;
+        if ((beatsPerMinute - 1) >= MIN_BPM_VALUE) {
+            beatsPerMinute -= 1;
+        }
     }
 
     @Override
     public void incrementBPMByFive() {
-        beatsPerMinute += 5;
+        if ((beatsPerMinute + 5) <= MAX_BPM_VALUE) {
+            beatsPerMinute += 5;
+        }
     }
 
     @Override
     public void decrementBPMByFive() {
-        beatsPerMinute -= 5;
+        if ((beatsPerMinute - 5) >= MIN_BPM_VALUE) {
+            beatsPerMinute -= 5;
+        }
     }
 
     @Override

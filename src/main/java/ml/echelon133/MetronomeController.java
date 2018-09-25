@@ -90,6 +90,22 @@ public class MetronomeController {
                 bpmTextLabel.setText(metronome.getBPM().toString());
             }
         });
+
+        decrementBy1Button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                metronome.decrementBPMByOne();
+                bpmTextLabel.setText(metronome.getBPM().toString());
+            }
+        });
+
+        decrementBy5Button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                metronome.decrementBPMByFive();
+                bpmTextLabel.setText(metronome.getBPM().toString());
+            }
+        });
     }
 
     public void setMetronome(Metronome metronome) {

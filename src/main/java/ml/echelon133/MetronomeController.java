@@ -2,6 +2,9 @@ package ml.echelon133;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -34,6 +37,26 @@ public class MetronomeController {
         timeSignatureChoiceBox.getSelectionModel().select("4/4");
 
         bpmTextLabel.setText(Metronome.DEFAULT_BPM_VALUE.toString());
+
+        startButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                stopButton.setDisable(false);
+                startButton.setDisable(true);
+
+                // disable increment/decrement buttons, so that bpm can be only changed when metronome is stopped
+                incrementBy1Button.setDisable(true);
+                incrementBy5Button.setDisable(true);
+                decrementBy1Button.setDisable(true);
+                decrementBy5Button.setDisable(true);
+
+                String timeSignature = timeSignatureChoiceBox.getValue();
+                metronome.setAccentInterval(TimeSignatureHolder.getNumberOfBeatsInSignature(timeSignature));
+
+                // wake the thread that fires click events
+                metronome.setDone(false);
+            }
+        });
     }
 
     public void setMetronome(Metronome metronome) {

@@ -72,6 +72,7 @@ public class MetronomeController {
 
                 // make the thread await for another signal
                 metronome.setDone(true);
+                metronome.resetCounter();
             }
         });
 

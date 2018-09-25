@@ -53,8 +53,25 @@ public class MetronomeController {
                 String timeSignature = timeSignatureChoiceBox.getValue();
                 metronome.setAccentInterval(TimeSignatureHolder.getNumberOfBeatsInSignature(timeSignature));
 
-                // wake the thread that fires click events
+                // signal the thread that it should start firing click events
                 metronome.setDone(false);
+            }
+        });
+
+        stopButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                stopButton.setDisable(true);
+                startButton.setDisable(false);
+
+                // enable back increment/decrement buttons, so that bpm can be changed when metronome is stopped
+                incrementBy1Button.setDisable(false);
+                incrementBy5Button.setDisable(false);
+                decrementBy1Button.setDisable(false);
+                decrementBy5Button.setDisable(false);
+
+                // make the thread await for another signal
+                metronome.setDone(true);
             }
         });
     }

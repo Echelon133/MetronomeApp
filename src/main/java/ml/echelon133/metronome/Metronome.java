@@ -1,5 +1,6 @@
 package ml.echelon133.metronome;
 
+import javafx.beans.value.ObservableDoubleValue;
 import ml.echelon133.metronome.event.*;
 import ml.echelon133.metronome.listener.IClickListener;
 
@@ -19,6 +20,7 @@ public class Metronome implements IMetronome, Runnable, IClickSource {
     private AtomicInteger counter;
     private Integer beatsPerMinute;
     private Integer accentInterval;
+    private ObservableDoubleValue measureProgress;
 
     private ClickEventHandler handler;
 
@@ -110,6 +112,10 @@ public class Metronome implements IMetronome, Runnable, IClickSource {
         return (long) ((60.0 / beatsPerMinute) * 1000);
     }
 
+    public ObservableDoubleValue getProgress() {
+        return measureProgress;
+    }
+
     @Override
     public Integer getBPM() {
         return beatsPerMinute;
@@ -119,6 +125,11 @@ public class Metronome implements IMetronome, Runnable, IClickSource {
     @Override
     public void setAccentInterval(Integer accentInterval) {
         this.accentInterval = accentInterval;
+    }
+
+    public void setMeasureProgress(ObservableDoubleValue measureProgress) {
+        this.measureProgress = measureProgress;
+        addClickListener((MeasureProgress)measureProgress);
     }
 
     @Override

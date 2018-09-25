@@ -74,6 +74,22 @@ public class MetronomeController {
                 metronome.setDone(true);
             }
         });
+
+        incrementBy1Button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                metronome.incrementBPMByOne();
+                bpmTextLabel.setText(metronome.getBPM().toString());
+            }
+        });
+
+        incrementBy5Button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                metronome.incrementBPMByFive();
+                bpmTextLabel.setText(metronome.getBPM().toString());
+            }
+        });
     }
 
     public void setMetronome(Metronome metronome) {

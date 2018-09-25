@@ -3,7 +3,6 @@ package ml.echelon133;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -44,6 +43,9 @@ public class MetronomeController {
                 stopButton.setDisable(false);
                 startButton.setDisable(true);
 
+                beatProgressBar.progressProperty().unbind();
+                beatProgressBar.progressProperty().bind(metronome.getProgress());
+
                 // disable increment/decrement buttons, so that bpm can be only changed when metronome is stopped
                 incrementBy1Button.setDisable(true);
                 incrementBy5Button.setDisable(true);
@@ -73,6 +75,9 @@ public class MetronomeController {
                 // make the thread await for another signal
                 metronome.setDone(true);
                 metronome.resetCounter();
+
+                beatProgressBar.progressProperty().unbind();
+                beatProgressBar.setProgress(0.0);
             }
         });
 

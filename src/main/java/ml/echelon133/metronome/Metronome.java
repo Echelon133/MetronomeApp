@@ -129,7 +129,6 @@ public class Metronome implements IMetronome, Runnable, IClickSource {
 
     public void setMeasureProgress(ObservableDoubleValue measureProgress) {
         this.measureProgress = measureProgress;
-        addClickListener((MeasureProgress)measureProgress);
     }
 
     @Override

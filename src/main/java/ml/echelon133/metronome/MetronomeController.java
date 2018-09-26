@@ -52,6 +52,7 @@ public class MetronomeController {
 
                 String timeSignature = timeSignatureChoiceBox.getValue();
                 metronome.setAccentInterval(TimeSignatureHolder.getNumberOfBeatsInSignature(timeSignature));
+                timeSignatureChoiceBox.setDisable(true);
 
                 // signal the thread that it should start firing click events
                 metronome.setDone(false);
@@ -76,6 +77,8 @@ public class MetronomeController {
 
                 beatProgressBar.progressProperty().unbind();
                 beatProgressBar.setProgress(0.0);
+
+                timeSignatureChoiceBox.setDisable(false);
             }
         });
 

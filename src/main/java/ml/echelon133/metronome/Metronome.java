@@ -9,11 +9,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.*;
 
 public class Metronome implements IMetronome, Runnable, IClickSource {
-    public static Integer MIN_BPM_VALUE = 50;
-    public static Integer MAX_BPM_VALUE = 240;
-    public static Integer DEFAULT_BPM_VALUE = 80;
-    public static Integer DEFAULT_ACCENT_INTERVAL = 4;
-
     private Lock lock = new ReentrantLock();
     private Condition ready = lock.newCondition();
 
@@ -64,6 +59,7 @@ public class Metronome implements IMetronome, Runnable, IClickSource {
         handler.signalClick(counter.getAndIncrement(), accentInterval);
     }
 
+    @Override
     public void setDone(Boolean d) {
         try {
             lock.lock();
@@ -112,6 +108,7 @@ public class Metronome implements IMetronome, Runnable, IClickSource {
         return (long) ((60.0 / beatsPerMinute) * 1000);
     }
 
+    @Override
     public ObservableDoubleValue getProgress() {
         return measureProgress;
     }
@@ -127,6 +124,7 @@ public class Metronome implements IMetronome, Runnable, IClickSource {
         this.accentInterval = accentInterval;
     }
 
+    @Override
     public void setMeasureProgress(ObservableDoubleValue measureProgress) {
         this.measureProgress = measureProgress;
     }

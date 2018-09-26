@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import ml.echelon133.metronome.ClickPlayer;
 import ml.echelon133.metronome.MeasureProgress;
 import ml.echelon133.metronome.Metronome;
+import ml.echelon133.metronome.MetronomeController;
 import ml.echelon133.metronome.listener.IClickListener;
 
 public class Main extends Application {

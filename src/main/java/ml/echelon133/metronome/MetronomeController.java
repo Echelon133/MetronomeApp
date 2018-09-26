@@ -1,4 +1,4 @@
-package ml.echelon133;
+package ml.echelon133.metronome;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,8 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import ml.echelon133.metronome.IMetronome;
-import ml.echelon133.metronome.TimeSignatureHolder;
 
 public class MetronomeController {
 

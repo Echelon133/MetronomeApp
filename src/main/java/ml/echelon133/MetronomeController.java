@@ -9,12 +9,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import ml.echelon133.metronome.Metronome;
+import ml.echelon133.metronome.IMetronome;
 import ml.echelon133.metronome.TimeSignatureHolder;
 
 public class MetronomeController {
 
-    private Metronome metronome;
+    private IMetronome metronome;
 
     @FXML private Button startButton;
     @FXML private Button stopButton;
@@ -35,7 +35,7 @@ public class MetronomeController {
         timeSignatureChoiceBox.setItems(allTimeSignatures);
         timeSignatureChoiceBox.getSelectionModel().select("4/4");
 
-        bpmTextLabel.setText(Metronome.DEFAULT_BPM_VALUE.toString());
+        bpmTextLabel.setText(IMetronome.DEFAULT_BPM_VALUE.toString());
 
         startButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -114,7 +114,7 @@ public class MetronomeController {
         });
     }
 
-    public void setMetronome(Metronome metronome) {
+    public void setMetronome(IMetronome metronome) {
         this.metronome = metronome;
     }
 }

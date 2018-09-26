@@ -83,4 +83,52 @@ public class MetronomeTest {
         Long pause = metronome.calculatePause();
         assertEquals(pause.doubleValue(), 300.0, 1);
     }
+
+    @Test
+    public void decrementBPMByFiveCannotGoLowerThanLowerBoundary() {
+        Integer bpmLowerBoundary = Metronome.MIN_BPM_VALUE;
+
+        // try to decrement bpm by 1000
+        for (int i = 0; i < 200; i++) {
+            metronome.decrementBPMByFive();
+        }
+
+        assertEquals(bpmLowerBoundary.intValue(), metronome.getBPM().intValue());
+    }
+
+    @Test
+    public void decrementBPMByOneCannotGoLowerThanLowerBoundary() {
+        Integer bpmLowerBoundary = Metronome.MIN_BPM_VALUE;
+
+        // try to decrement bpm by 200
+        for (int i = 0; i < 200; i++) {
+            metronome.decrementBPMByOne();
+        }
+
+        assertEquals(bpmLowerBoundary.intValue(), metronome.getBPM().intValue());
+    }
+
+    @Test
+    public void incrementBPMByFiveCannotGoHigherThanUpperBoundary() {
+        Integer bpmUpperBoundary = Metronome.MAX_BPM_VALUE;
+
+        // try to increment bpm by 100
+        for (int i = 0; i < 200; i++) {
+            metronome.incrementBPMByFive();
+        }
+
+        assertEquals(bpmUpperBoundary.intValue(), metronome.getBPM().intValue());
+    }
+
+    @Test
+    public void decrementBPMByOneCannotGoHigherThanUpperBoundary() {
+        Integer bpmUpperBoundary = Metronome.MAX_BPM_VALUE;
+
+        // try to increment bpm by 200
+        for (int i = 0; i < 200; i++) {
+            metronome.incrementBPMByOne();
+        }
+
+        assertEquals(bpmUpperBoundary.intValue(), metronome.getBPM().intValue());
+    }
 }

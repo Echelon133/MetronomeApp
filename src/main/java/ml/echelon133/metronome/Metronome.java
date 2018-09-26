@@ -1,5 +1,6 @@
 package ml.echelon133.metronome;
 
+import javafx.beans.value.ObservableDoubleValue;
 import ml.echelon133.metronome.event.*;
 import ml.echelon133.metronome.listener.IClickListener;
 
@@ -8,22 +9,28 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.*;
 
 public class Metronome implements IMetronome, Runnable, IClickSource {
+    public static Integer MIN_BPM_VALUE = 50;
+    public static Integer MAX_BPM_VALUE = 240;
+    public static Integer DEFAULT_BPM_VALUE = 80;
+    public static Integer DEFAULT_ACCENT_INTERVAL = 4;
+
     private Lock lock = new ReentrantLock();
     private Condition ready = lock.newCondition();
 
     private AtomicInteger counter;
     private Integer beatsPerMinute;
     private Integer accentInterval;
+    private ObservableDoubleValue measureProgress;
 
     private ClickEventHandler handler;
 
     private Boolean done;
 
     public Metronome() {
-        beatsPerMinute = 80;
+        beatsPerMinute = DEFAULT_BPM_VALUE;
         counter = new AtomicInteger(1);
         handler = new ClickEventHandler();
-        accentInterval = 4;
+        accentInterval = DEFAULT_ACCENT_INTERVAL;
     }
 
     @Override
@@ -71,22 +78,30 @@ public class Metronome implements IMetronome, Runnable, IClickSource {
 
     @Override
     public void incrementBPMByOne() {
-        beatsPerMinute += 1;
+        if ((beatsPerMinute + 1) <= MAX_BPM_VALUE) {
+            beatsPerMinute += 1;
+        }
     }
 
     @Override
     public void decrementBPMByOne() {
-        beatsPerMinute -= 1;
+        if ((beatsPerMinute - 1) >= MIN_BPM_VALUE) {
+            beatsPerMinute -= 1;
+        }
     }
 
     @Override
     public void incrementBPMByFive() {
-        beatsPerMinute += 5;
+        if ((beatsPerMinute + 5) <= MAX_BPM_VALUE) {
+            beatsPerMinute += 5;
+        }
     }
 
     @Override
     public void decrementBPMByFive() {
-        beatsPerMinute -= 5;
+        if ((beatsPerMinute - 5) >= MIN_BPM_VALUE) {
+            beatsPerMinute -= 5;
+        }
     }
 
     @Override
@@ -95,6 +110,10 @@ public class Metronome implements IMetronome, Runnable, IClickSource {
         // 60 bpm -> click every 1000ms
         // 120 bpm -> click every 500ms
         return (long) ((60.0 / beatsPerMinute) * 1000);
+    }
+
+    public ObservableDoubleValue getProgress() {
+        return measureProgress;
     }
 
     @Override
@@ -106,6 +125,11 @@ public class Metronome implements IMetronome, Runnable, IClickSource {
     @Override
     public void setAccentInterval(Integer accentInterval) {
         this.accentInterval = accentInterval;
+    }
+
+    public void setMeasureProgress(ObservableDoubleValue measureProgress) {
+        this.measureProgress = measureProgress;
+        addClickListener((MeasureProgress)measureProgress);
     }
 
     @Override

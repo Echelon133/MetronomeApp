@@ -17,21 +17,21 @@
          <children>
             <ButtonBar layoutY="177.0" prefHeight="40.0" prefWidth="149.0">
               <buttons>
-                <Button mnemonicParsing="false" text="Start" />
-                  <Button disable="true" mnemonicParsing="false" text="Stop" />
+                <Button fx:id="startButton" mnemonicParsing="false" text="Start" />
+                  <Button fx:id="stopButton" disable="true" mnemonicParsing="false" text="Stop" />
               </buttons>
             </ButtonBar>
             <ButtonBar layoutX="-14.0" layoutY="14.0" prefHeight="40.0" prefWidth="360.0">
               <buttons>
-                <Button mnemonicParsing="false" text="&lt;&lt;" />
-                  <Button mnemonicParsing="false" text="&lt;" />
-                  <Button mnemonicParsing="false" text="&gt;" />
-                  <Button mnemonicParsing="false" text="&gt;&gt;" />
+                <Button fx:id="decrementBy5Button" mnemonicParsing="false" text="&lt;&lt;" />
+                  <Button fx:id="decrementBy1Button" mnemonicParsing="false" text="&lt;" />
+                  <Button fx:id="incrementBy1Button" mnemonicParsing="false" text="&gt;" />
+                  <Button fx:id="incrementBy5Button" mnemonicParsing="false" text="&gt;&gt;" />
               </buttons>
             </ButtonBar>
-            <ChoiceBox layoutX="196.0" layoutY="185.0" prefWidth="150.0" />
-            <ProgressBar layoutX="80.0" layoutY="113.0" prefWidth="200.0" progress="0.0" />
-            <Label layoutX="143.0" layoutY="54.0" prefHeight="40.0" prefWidth="75.0" style="-fx-alignment: center;" text="80">
+            <ChoiceBox fx:id="timeSignatureChoiceBox" layoutX="196.0" layoutY="185.0" prefWidth="150.0" />
+            <ProgressBar fx:id="beatProgressBar" layoutX="80.0" layoutY="113.0" prefWidth="200.0" progress="0.0" />
+            <Label fx:id="bpmTextLabel" layoutX="143.0" layoutY="54.0" prefHeight="40.0" prefWidth="75.0" style="-fx-alignment: center;">
                <font>
                   <Font size="36.0" />
                </font>

@@ -4,13 +4,11 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.media.Media;
 import javafx.stage.Stage;
-import ml.echelon133.metronome.ClickPlayer;
-import ml.echelon133.metronome.MeasureProgress;
-import ml.echelon133.metronome.Metronome;
-import ml.echelon133.metronome.MetronomeController;
+import ml.echelon133.metronome.*;
 import ml.echelon133.metronome.listener.IClickListener;
+
+import java.io.InputStream;
 
 public class Main extends Application {
 
@@ -18,10 +16,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ml/echelon133/fxml/metronome.fxml"));
         Parent root = loader.load();
-        Media strongBeat = new Media(getClass().getResource("/ml/echelon133/sounds/strong_beat.mp3").toExternalForm());
-        Media weakBeat = new Media(getClass().getResource("/ml/echelon133/sounds/weak_beat.mp3").toExternalForm());
+        InputStream strongBeatStream = getClass().getResource("/ml/echelon133/sounds/strong_beat.wav").openStream();
+        InputStream weakBeatStream = getClass().getResource("/ml/echelon133/sounds/weak_beat.wav").openStream();
 
-        IClickListener clickPlayer = new ClickPlayer(strongBeat, weakBeat);
+        IClickListener clickPlayer = new WavClickPlayer(strongBeatStream, weakBeatStream);
         IClickListener measureProgress = new MeasureProgress();
 
         Metronome metronome = new Metronome();

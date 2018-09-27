@@ -2,11 +2,14 @@ package ml.echelon133.metronome;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@RunWith(JUnitPlatform.class)
 public class MetronomeTest {
 
     private static IMetronome metronome;

@@ -3,9 +3,12 @@ package ml.echelon133.metronome;
 import ml.echelon133.metronome.listener.TestClickListener;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@RunWith(JUnitPlatform.class)
 public class MetronomeThreadTest {
 
     private Metronome metronome;

@@ -34,26 +34,27 @@ public class MetronomeTest {
     public void bpmModifiersWorkProperly() {
         int mirrorValue = 80;
 
-        for (int i = 0; i < random.nextInt(10); i++) {
+        for (int i = 0; i < random.nextInt(5); i++) {
             metronome.incrementBPMByOne();
             mirrorValue++;
         }
 
-        for (int i = 0; i < random.nextInt(10); i++) {
+        for (int i = 0; i < random.nextInt(5); i++) {
             metronome.incrementBPMByFive();
             mirrorValue += 5;
         }
 
-        for (int i = 0; i < random.nextInt(10); i++) {
+        for (int i = 0; i < random.nextInt(5); i++) {
             metronome.decrementBPMByOne();
             mirrorValue--;
         }
 
-        for (int i = 0; i < random.nextInt(10); i++) {
+        for (int i = 0; i < random.nextInt(5); i++) {
             metronome.decrementBPMByFive();
             mirrorValue -= 5;
         }
 
+        System.out.println(mirrorValue);
         assertEquals(mirrorValue, metronome.getBPM().intValue());
     }
 

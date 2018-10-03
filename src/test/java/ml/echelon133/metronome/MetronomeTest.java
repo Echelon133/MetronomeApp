@@ -124,7 +124,7 @@ public class MetronomeTest {
     }
 
     @Test
-    public void decrementBPMByOneCannotGoHigherThanUpperBoundary() {
+    public void incrementBPMByOneCannotGoHigherThanUpperBoundary() {
         Integer bpmUpperBoundary = Metronome.MAX_BPM_VALUE;
 
         // try to increment bpm by 200
